@@ -1,0 +1,18 @@
+from Bio import SeqIO
+from Bio.Align import PairwiseAligner
+from Bio.Seq import Seq
+from Bio.Blast import NCBIWWW, NCBIXML
+import urllib.request, time, gzip
+from io import StringIO
+from Detector.py import human_percentage_blast
+
+percentage_list = []
+
+for i in percentage_list:
+    
+
+
+
+
+
+
