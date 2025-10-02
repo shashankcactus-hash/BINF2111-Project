@@ -4,6 +4,7 @@ from Bio.Seq import Seq
 from Bio.Blast import NCBIWWW, NCBIXML
 import urllib.request, time, gzip
 from io import StringIO
+import numpy as np
 
 
 
@@ -15,6 +16,7 @@ def human_percentage_blast():
     outputfile = "blastresult.md" #All the results will get thrown into here, is markdown(md); light weight.
 
     percentage_list = []
+    
 
     example = SeqIO.read(examplefasta, "fasta")
 
@@ -49,27 +51,31 @@ def human_percentage_blast():
 
 
 
-                    #Stores all the values in a list
+                    #Stores all the values in a list and finds mean 
                     percentage_list.append(round(percentage, 3))
+
+                    percent_average = np.mean(percentage_list)
 
 
                     #Writes the shit into the md file
-                    out_handle.write(f"This sample is {percentage:.2f}% human!\n")
+                    out_handle.write(f"This animal is {percentage:.2f}% human!\n")
 
                     if percentage >= 95.00:
-                        out_handle.write(f"This sample is likely human!\n \n")
+                        out_handle.write(f"This animal is human!\n \n")
                     else:
-                        out_handle.write(f"This sample is likely not human!\n \n")
+                        out_handle.write(f"This animal is not human!\n \n")
+
+                    out_handle.write(f"\nOn average, this animal is {percent_average:.2f}% human!\n")
 
 
                     #So we don't brick our pc :D
                     if i >= 4:
                         break
+                    
 
 human_percentage_blast() #Prints the class
 
 
     
-
 
 
