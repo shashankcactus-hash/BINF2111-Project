@@ -7,35 +7,7 @@ from io import StringIO
 
 #These blocks below are commented out
 #Note for the ls_orchid it is more than one dna sequences for orchids
-"""
-def id_description():
-    for seq_record in SeqIO.parse("ls_orchid.fasta", "fasta"):
-        print(f"ID: {seq_record.id}")
-        print(f"Description: {seq_record.description}")
-        print("" \
-        "")
 
-        print(seq_record.seq.translate())
-id_description()
-"""
-"""
-def transcriber():
-    dna = Seq("ATGGCCATTGTAATGGGCCGCTGAAAGGGTGCCCGATAG")
-    print(f"DNA: {dna}")
-
-    rna = dna.transcribe()
-    print(F"RNA: {rna}")
-transcriber()
-"""
-"""
-def seq_count():
-    count = 0
-    for record in SeqIO.parse("ls_orchid.fasta", "fasta"):
-        count+=1
-    print(f"The sequence count is: {count}")
-seq_count()
-"""
-""""""
 def human_percentage_blast():
     examplefasta = "chimp.fasta"  #File that is being used to compare to human. Currently its being used to compare and search for itself.
 
@@ -49,7 +21,8 @@ def human_percentage_blast():
         with urllib.request.urlopen(humanfasta) as huma:
             with gzip.open(huma, "rt") as human:
                 for i, hum in enumerate(SeqIO.parse(human, "fasta")):
-                    out_handle.write(f"{i+1}, ID: {hum.id}, SeqRecord: {len(hum.seq)}, Features: {hum.features}\n")
+                    out_handle.write(f"{i+1}, ID: {hum.id}, SeqRecord: {len(hum.seq)}\n")
+
 
                     #Alignment shit
                     aligner = PairwiseAligner()
@@ -61,7 +34,6 @@ def human_percentage_blast():
 
 
                     #Score calculator
-
                     matches = 0
 
                     bases = 0
@@ -74,20 +46,12 @@ def human_percentage_blast():
 
                     percentage = (matches / bases) * 100
 
-                    #Stores all the values in a list
 
+
+                    #Stores all the values in a list
                     percentage_list = []
 
-                    percentage_list.append(percentage)
-                    """
-                    while True:
-                        if percentage == "":
-                            break
-                        try:
-                            percentage_list.append(float(percentage))
-                        except ValueError:
-                            print("Invalid")
-                    """
+                    percentage_list.append(round(percentage, 3))
 
                     print(percentage_list)
 
@@ -96,8 +60,6 @@ def human_percentage_blast():
 
 
                     #Writes the shit into the md file
-                    out_handle.write(f"The length of this genome is: {len(example.seq)}!\n")
-
                     out_handle.write(f"This animal is {percentage:.2f}% human!\n")
 
                     if percentage != 100.00:
@@ -106,51 +68,16 @@ def human_percentage_blast():
                         out_handle.write(f"This animal is human!\n \n")
 
 
+                    #
+
+
                     #So we don't brick our pc :D
-                    if i > 5:
-
-
+                    if i >= 4:
                         break
-
-                    
-
-
-
-
-
-
-
-        """for record in SeqIO.parse(examplefasta, "fasta"): #Reads the output file via parsing.
-            print(f"We are BLASTing {record.id}") 
-            out_handle.write(f"Sequence ID: {record.id}\n") #Writes into the md file.
-
-            result = NCBIWWW.qblast("blastn", "nt", record.seq) #Searches the NCBI database
-
-            blast_result = NCBIXML.read(result) #Uses NBCI logic to read the NCBI database data
-
-            if blast_result.alignments: #Alignments match
-                top = blast_result.alignments[0] #Sees if sequences are aligned, gets the top hit
-                hsp = top.hsps[0] #High scoring alignment regions, gets the top hit
-                percentage = (hsp.identities / hsp.align_length) * 100 #Multiplies the decimal by 100
-                
-                out_handle.write(f"Top hit: {top.title}\n")
-                out_handle.write(f"Length: {top.length}\n")
-                out_handle.write(f"Percent identity: {percentage:.2f}%\n")  #Writes these infos into the md file. 
-
-                print(f"Top hit: {top.title} ({percentage:.2f}%)\n")
-            else:
-                out_handle.write("No hits found.\n") #If no allignments are found, this is printed into the md file. 
-                print("No hits found.")
-
-
-            time.sleep(5) #Spaces the time to access the NCBI database so it doesn't yell at us :D"""
-
-
 
 human_percentage_blast() #Prints the class
 
 
     
-
 
 
