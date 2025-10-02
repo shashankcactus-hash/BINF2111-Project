@@ -76,12 +76,19 @@ def human_percentage_blast():
 
                     #Stores all the values in a list
 
-                    """ranger = 5
-
                     percentage_list = []
 
-                    for i in range(ranger):
-                        percentage_list.append(percentage)"""
+                    while True:
+                        if percentage == "":
+                            break
+                        try:
+                            percentage_list.append(float(percentage))
+                        except ValueError:
+                            print("Invalid")
+                    
+
+                    print(percentage_list)
+
                     
 
 
