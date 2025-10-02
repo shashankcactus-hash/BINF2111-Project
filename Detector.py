@@ -59,12 +59,12 @@ def human_percentage_blast():
 
 
                     #Writes the shit into the md file
-                    out_handle.write(f"This animal is {percentage:.2f}% human!\n")
+                    out_handle.write(f"This sample is {percentage:.2f}% human!\n")
 
                     if percentage != 100.00:
-                        out_handle.write(f"This animal is not human!\n \n")
+                        out_handle.write(f"This sample is not human!\n \n")
                     else:
-                        out_handle.write(f"This animal is human!\n \n")
+                        out_handle.write(f"This sample is human!\n \n")
 
 
                     #
@@ -78,6 +78,7 @@ human_percentage_blast() #Prints the class
 
 
     
+
 
 
 
