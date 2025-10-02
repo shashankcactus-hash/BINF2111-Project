@@ -4,9 +4,9 @@ The Sequential Super Solver- A tool using sequence alignment for homo sapien ide
 ## Our Info
 A BINF 2111 Project by Team Data Nature Analysts (Team-D.N.A)
 Team D.N.A members include:
-Austin Tran|atran47@charlotte.edu|[strictostrich](https://github.com/strictostrich)
-Dalton Thomas|dthoma93@charlotte.edu|[dthoma93](https://github.com/dthoma93-lgtm)
-Shashank Sutty|ssutty@charlotte.edu|[shashankcactus](https://github.com/shashankcactus-hash)
+Austin Tran|atran47@charlotte.edu|[strictostrich](https://github.com/strictostrich) \n
+Dalton Thomas|dthoma93@charlotte.edu|[dthoma93](https://github.com/dthoma93-lgtm) \n
+Shashank Sutty|ssutty@charlotte.edu|[shashankcactus](https://github.com/shashankcactus-hash) \n
 
 
 ## Description
