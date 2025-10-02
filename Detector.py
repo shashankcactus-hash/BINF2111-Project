@@ -48,14 +48,9 @@ def human_percentage_blast():
                     percentage = (matches / bases) * 100
 
 
-
                     #Stores all the values in a list
 
                     percentage_list.append(round(percentage, 3))
-
-
-                    
-
 
 
                     #Writes the shit into the md file
@@ -67,9 +62,6 @@ def human_percentage_blast():
                         out_handle.write(f"This sample is human!\n \n")
 
 
-                    #
-
-
                     #So we don't brick our pc :D
                     if i >= 4:
                         break
@@ -78,6 +70,7 @@ human_percentage_blast() #Prints the class
 
 
     
+
 
 
 
