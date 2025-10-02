@@ -76,23 +76,29 @@ def human_percentage_blast():
 
                     #Stores all the values in a list
 
-                    ranger = 5
-
+                    """ranger = 5
 
                     percentage_list = []
 
                     for i in range(ranger):
-                        percentage_list.append(percentage)
-                        
+                        percentage_list.append(percentage)"""
+                    
+
 
 
                     #Writes the shit into the md file
                     out_handle.write(f"The length of this genome is: {len(example.seq)}!\n")
 
-                    out_handle.write(f"This animal is {percentage:.2f}% human!\n \n")
+                    out_handle.write(f"This animal is {percentage:.2f}% human!\n")
+
+                    if percentage != 100.00:
+                        out_handle.write(f"This animal is not human!\n \n")
+                    else:
+                        out_handle.write(f"This animal is human!\n \n")
+
 
                     #So we don't brick our pc :D
-                    if i > ranger:
+                    if i > 5:
 
 
                         break
