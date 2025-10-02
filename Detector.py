@@ -78,6 +78,8 @@ def human_percentage_blast():
 
                     percentage_list = []
 
+                    percentage_list.append(percentage)
+                    """
                     while True:
                         if percentage == "":
                             break
@@ -85,7 +87,7 @@ def human_percentage_blast():
                             percentage_list.append(float(percentage))
                         except ValueError:
                             print("Invalid")
-                    
+                    """
 
                     print(percentage_list)
 
@@ -149,5 +151,6 @@ human_percentage_blast() #Prints the class
 
 
     
+
 
 
