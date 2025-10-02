@@ -11,3 +11,6 @@ Shashank Sutty | ssutty@charlotte.edu | [shashankcactus](https://github.com/shas
 
 ## Description
 In this project we are trying to make a script that, once it takes a DNA input, will see how close the input is to a human! It will also print out what animal, or organism it is if it is not human. 
+
+
+# ***Note this project is not even close to being finished***
