@@ -5,15 +5,16 @@ from Bio.Blast import NCBIWWW, NCBIXML
 import urllib.request, time, gzip
 from io import StringIO
 
-#These blocks below are commented out
-#Note for the ls_orchid it is more than one dna sequences for orchids
+
 
 def human_percentage_blast():
     examplefasta = "chimp.fasta"  #File that is being used to compare to human. Currently its being used to compare and search for itself.
 
     humanfasta = "https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/001/405/GCF_000001405.40_GRCh38.p14/GCF_000001405.40_GRCh38.p14_genomic.fna.gz" #Human genome 3.1GB file
     
-    outputfile = "blastresult.md" #All the results will get thrown into here, is markdown(md); light weight. 
+    outputfile = "blastresult.md" #All the results will get thrown into here, is markdown(md); light weight.
+
+    percentage_list = []
 
     example = SeqIO.read(examplefasta, "fasta")
 
@@ -49,11 +50,9 @@ def human_percentage_blast():
 
 
                     #Stores all the values in a list
-                    percentage_list = []
 
                     percentage_list.append(round(percentage, 3))
 
-                    print(percentage_list)
 
                     
 
@@ -79,5 +78,6 @@ human_percentage_blast() #Prints the class
 
 
     
+
 
 
