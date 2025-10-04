@@ -3,8 +3,30 @@ from Bio.Align import PairwiseAligner
 from Bio.Seq import Seq
 from Bio.Blast import NCBIWWW, NCBIXML
 import urllib.request, time, gzip
-from io import StringIO
+from io import StringIO 
 import numpy as np
+
+
+percentage_list = []
+
+
+#Stores percentages, updates the average, and writes the results down in the md file
+def add_to_list(percentage, out_handle, final = False):
+
+    if not final:
+        percentage_list.append(round(percentage, 3)) #Rounds to 3 decimals places
+
+        #Writes this in the md file 
+        out_handle.write(f"This animal is {percentage:.2f}% human!\n") 
+
+        if percentage >= 95.00:
+            out_handle.write(f"This animal is human!\n \n")
+        else:
+            out_handle.write(f"This animal is not human!\n \n")
+    else:
+        percent_average = np.mean(percentage_list)
+        out_handle.write(f"\nOn average, this animal is {percent_average:.2f}% human!\n") 
+
 
 
 
@@ -15,10 +37,7 @@ def human_percentage_blast():
     
     outputfile = "blastresult.md" #All the results will get thrown into here, is markdown(md); light weight.
 
-    percentage_list = []
-    
-
-    example = SeqIO.read(examplefasta, "fasta")
+    example = SeqIO.read(examplefasta, "fasta") 
 
     with open(outputfile, "w") as out_handle: #As you are writing in the outputfile:
         with urllib.request.urlopen(humanfasta) as huma:
@@ -27,7 +46,7 @@ def human_percentage_blast():
                     out_handle.write(f"{i+1}, ID: {hum.id}, SeqRecord: {len(hum.seq)}\n")
 
 
-                    #Alignment shit
+                    #Alignment 
                     aligner = PairwiseAligner()
                     aligner.mode = "local"
                     aligner.match_score = 1
@@ -41,7 +60,7 @@ def human_percentage_blast():
 
                     bases = 0
 
-                    score = aligner.score(str(hum.seq[:10000]), str(example.seq))
+                    score = aligner.score(str(hum.seq[:100000]), str(example.seq))
 
                     matches += score
 
@@ -50,30 +69,21 @@ def human_percentage_blast():
                     percentage = (matches / bases) * 100
 
 
-
-                    #Stores all the values in a list and finds mean 
-                    percentage_list.append(round(percentage, 3))
-
-                    percent_average = np.mean(percentage_list)
-
-
-                    #Writes the shit into the md file
-                    out_handle.write(f"This animal is {percentage:.2f}% human!\n")
-
-                    if percentage >= 95.00:
-                        out_handle.write(f"This animal is human!\n \n")
-                    else:
-                        out_handle.write(f"This animal is not human!\n \n")
-
-                    out_handle.write(f"\nOn average, this animal is {percent_average:.2f}% human!\n")
+                    add_to_list(percentage, out_handle)
 
 
                     #So we don't brick our pc :D
-                    if i >= 4:
+                    if i >= 7:
                         break
-                    
+        add_to_list(0, out_handle, final=True) #Final average calculation             
 
 human_percentage_blast() #Prints the class
+
+
+
+
+
+
 
 
     
