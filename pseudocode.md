@@ -27,4 +27,13 @@ access the outputfile and designate it as out_handle  <br>
 
 access the file link containing the human genome and designate it as huma.<br>
 using gzip, open the human genome file (huma) while reading its contents as text, and save it as the variable "human"  <br>
+Initialize a for loop to parse through the human genome<br>
+write the sequence number, id, and sequence record into the provided document<br>
 
+set the variable "aligner" to the value of the method "PairwiseAligner"<br>
+set up the aligner settings<br>
+
+Initialize variables to calculate percentage <br>
+add percentage to percentage_list <br> 
+
+set a loop limit <br>
