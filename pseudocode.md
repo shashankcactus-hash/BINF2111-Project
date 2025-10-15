@@ -1,14 +1,14 @@
 Import biopython methods  <br>
+Import numpy, urllib, and gzip
 
 initialize an empty list, percentage_list.  <br>
   
-define the function "add_to_list"<br>
+define a function to add percentages to a list<br>
   
 if the iteration is not the final iteration, then proceed<br>
 add the percentage rounded to 3 decimals to percentage_list.<br>
 write this percentage out to a provided file.<br>
 checks if the percentage value is greater than or equal to 95%<br>
-
 
 
 if true, then write to the provided file stating that the sample is human.<br>
@@ -18,22 +18,26 @@ else<br>
 set the variable "percent_average" equal to the mean of the percentages contained in percentage_list<br>
 write out a brief sentence detailing the percent similarity of the samples  <br>
 
-define the function "human_percentage_blast"<br>
-set the variable examplefasta to a given fasta file<br>
-set the variable humanfasta to a file containing the human genome<br>
-set the variable outputfile to a markdown file that will contain the results of the alignment.<br>  
+define the function to read the input file<br>
+  open and read the input file.<br>
 
-access the outputfile and designate it as out_handle  <br>
+define the function to read the file containing the human genome <br>
+first, open the link containing the human genome file <br>
+open the file containing the human genome <br>
+parse through the data in the fasta format. <br>
 
-access the file link containing the human genome and designate it as huma.<br>
-using gzip, open the human genome file (huma) while reading its contents as text, and save it as the variable "human"  <br>
-Initialize a for loop to parse through the human genome<br>
-write the sequence number, id, and sequence record into the provided document<br>
-
-set the variable "aligner" to the value of the method "PairwiseAligner"<br>
+define the function for alignment calculations <br>
+set up the aligner using the PairwiseAligner <br>
 set up the aligner settings<br>
 
-Initialize variables to calculate percentage <br>
-add percentage to percentage_list <br> 
+define the main method <br>
+have a variable to take an input fasta file <br>
+have a variable that contains the human genome <br>
+set an output file to write the results into <br>
+open the output file with writing permissions <br>
+iterate through the human genome <br>
+write into the output based on what is read in the human genome <br>
+use the alignment calculator function to calculate the percentage <br>
+add the percentage to the percentage list, and writes it into the output file <br>
+set a read limit so that the program doesn't iterate through the entire human genome <br>
 
-set a loop limit <br>
