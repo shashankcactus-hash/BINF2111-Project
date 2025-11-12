@@ -2,6 +2,7 @@ from Bio import SeqIO
 from Bio.Align import PairwiseAligner
 import urllib.request, gzip, os, time, numpy as np
 from concurrent.futures import ProcessPoolExecutor, as_completed
+import re
 
 
 percentage_list = []
@@ -76,26 +77,20 @@ def ensure_input_genome_exists(url, local_file):
 # === displays runtime === 
 #*please note this doesn't work as intended 
 #*will display 0 seconds of runtime, but true runtime is around 2:35 
-def runtime():
-    starttime = time.time()
-
-    for i in range(100000):
-        _ = i *2
-    
-    endtime = time.time()
-
-    elapsedtime = endtime - starttime
-
-    print(f"The total runtime is {elapsedtime} seconds") 
-
-    return elapsedtime
-
 
 
 # === main ===
 def main():
-    inputseq = "https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/018/350/175/GCF_018350175.1_F.catus_Fca126_mat1.0/GCF_018350175.1_F.catus_Fca126_mat1.0_genomic.fna.gz"
-    inputfile = "input.fna.gz" #i know not all inputs are going to be a .gz so if we can improve on how to fix it that would be great
+    starttime = time.time()
+
+    inputseq = "https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/018/350/195/GCF_018350195.1_P.tigris_Pti1_mat1.1/GCF_018350195.1_P.tigris_Pti1_mat1.1_genomic.fna.gz"
+
+    for i in range(1, 10000):
+        inputfile = f"input{i}.fna.gz"
+        if not os.path.exists(inputfile):
+            print(f"Saving new file as {inputfile}!")
+            break #i know not all inputs are going to be a .gz so if we can improve on how to fix it that would be great
+
     humanseq = "https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/001/405/GCF_000001405.40_GRCh38.p14/GCF_000001405.40_GRCh38.p14_genomic.fna.gz"
     outputfile = "blastresult.md"
 
@@ -122,7 +117,12 @@ def main():
                 out_handle.write(f"Error processing {input_id}: {str(e)}\n")
 
         add_to_list(0, out_handle, final=True)
+
+    endtime = time.time()
+
+    elapsedtime = endtime - starttime
+
+    print(f"The total runtime is {elapsedtime:.2f} seconds.")
     
 if __name__ == "__main__":
     main()
-    runtime()
