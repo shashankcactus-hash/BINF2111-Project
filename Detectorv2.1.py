@@ -5,6 +5,7 @@ import urllib.request, gzip, os, time, numpy as np
 from concurrent.futures import ProcessPoolExecutor, as_completed
 
 
+
 percentage_list = []
 results = []
 
@@ -74,27 +75,11 @@ def ensure_input_genome_exists(url, local_file):
     else:
         print("Input genome already exists locally, and is saved!")
 
-# === displays runtime === 
-#*please note this doesn't work as intended 
-#*will display 0 seconds of runtime, but true runtime is around 2:35 
-def runtime():
-    starttime = time.time()
-
-    for i in range(100000):
-        _ = i *2
-    
-    endtime = time.time()
-
-    elapsedtime = endtime - starttime
-
-    print(f"The total runtime is {elapsedtime} seconds") 
-
-    return elapsedtime
-
 
 
 # === main ===
 def main():
+    start_time = time.time()
     parser = argparse.ArgumentParser(description="Program to compare the sequence similarity of a given fasta with the human genome.")
     
     parser.add_argument(
@@ -152,6 +137,11 @@ def main():
                 out_handle.write(f"Error processing {input_id}: {str(e)}\n")
 
         add_to_list(0, out_handle, final=True)
+
+        end_time = time.time()
+        elapsed_time = end_time - start_time
+
+        print(f"The total runtime is {elapsed_time:.2f} seconds.")
     
 if __name__ == "__main__":
     main()
