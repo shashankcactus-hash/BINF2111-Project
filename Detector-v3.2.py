@@ -74,10 +74,10 @@ def process_contigs(input_seq, human_contigs):
 def ensure_input_genome_exists(url, local_file):
     if not os.path.exists(local_file):
         print(f"Downloading the input genome to {local_file} (this may take a while...)")
-        urllib.request.urlretrieve(url, local_file)
-        print("Download complete!")
     else:
         print("Input genome already exists locally, and is saved!")
+    urllib.request.urlretrieve(url, local_file)
+    print("Download complete!")
 
 
 # === main ===
