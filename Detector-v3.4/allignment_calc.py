@@ -1,9 +1,9 @@
 from Bio.Align import PairwiseAligner
 
-def alignment_calculator(human_seq, input_seq, max_bases=100000):
+def alignment_calculator(human_seq, input_seq, max_bases=1000000):
     aligner = PairwiseAligner()
     aligner.mode = "local"
-    aligner.match_score = 1
+    aligner.match_score = 2
     aligner.mismatch_score = 0
     aligner.open_gap_score = 0
     aligner.extend_gap_score = 0
@@ -21,3 +21,5 @@ def process_contigs(input_seq, human_contigs):
         pct = alignment_calculator(human_seq, input_seq)
         local_results.append((input_seq.id, human_seq.id, pct))
     return local_results
+
+
