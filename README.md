@@ -17,4 +17,4 @@ This program uses Biopython for several functions to compare  a FASTA file input
 Through the process of sequence alignment the solver compares the two files against each other and yields a percentage similarity.
 A high percentage match likely indicates a human sample. A low percentage match generally indicates a non human sample.
 After running these functions a result is output by the program indicating if the sample is human or not along with a percentage match to the stored human Genome!
-### ***Note this project is not even close to being finished***
+
